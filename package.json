@@ -1,0 +1,22 @@
+{
+  "name": "desafio_01",
+  "version": "1.0.0",
+  "description": "Primer Desafio del curso de Backend en Coderhouse",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jnmgnn/Desafios-Coderhouse.git"
+  },
+  "author": "Juana Mignone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jnmgnn/Desafios-Coderhouse/issues"
+  },
+  "homepage": "https://github.com/jnmgnn/Desafios-Coderhouse#readme",
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
+}
