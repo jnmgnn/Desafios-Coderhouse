@@ -1,15 +1,14 @@
-const fs = require("fs")
+import fs from "fs"
 
-
-class ProductManager{
+export default class ProductManager{
     //Atributos
-    products;
+    products = [];
     path;
 
     //Constructor
-    constructor(){
+    constructor(path){
+        this.path = path;
         this.products = this.#leerArchivo()
-        this.path = './archivos/productos.txt'
     }
 
     //Métodos
@@ -22,13 +21,17 @@ class ProductManager{
 
 
     #leerArchivo(){
+        console.log(this.path)
         try {
-            if(fs.existsSync(this.path))
-            return JSON.parse(fs.readFileSync(this.path, 'utf-8'))
-            return []
+            if(fs.existsSync(this.path)){
+                return JSON.parse(fs.readFileSync(this.path, 'utf-8'))
+            } else{
+                return "Error al leer archivo"
+            }
         } catch (error) {
             console.log(error.message) 
         }
+        return []
     }
 
     #guardarDatos(){
@@ -39,8 +42,15 @@ class ProductManager{
         }
     }
 
+    async getProducts(){
+        if(fs.existsSync(this.path)){
+            return JSON.parse(await fs.promises.readFile(this.path, {encoding:"utf-8"}))
+        } else {
+            return []
+        }
+    }
 
-    addProduct(title,description,price,thumbnail,code,stock){
+    async addProduct(title,description,price,thumbnail,code,stock){
         if(!title || !description || !price || !thumbnail || !code || !stock){
         return 'Faltan campos'
         }
@@ -65,40 +75,35 @@ class ProductManager{
             stock: stock
         }
         this.products.push(nuevoProducto)
-        this.#guardarDatos()
+        await this.#guardarDatos()
         return "Producto agregado"
     }
-    getProducts(){
-        return this.products
+
+    async getProductsByID(id){
+        let productos=await this.#leerArchivo()
+        let producto=productos.find(prod =>prod .id===id)
+        return producto
     }
-    getProductsByID(id){
-        const i = this.products.find(i => i.id === id)
-        if (i){
-            return i
-        } else{
-            return "No se encontró el producto :("
-        }
-    }
-    updateProduct(id, propiedad){
+
+
+    async updateProduct(id, propiedad){
         const i = this.products.findIndex(p=> p.id === id)
         if(i !== -1){
             const {id, ...rest} = propiedad
             this.products[i] = {...this.products[i], ...rest}
-            this.#guardarDatos
+            await this.#guardarDatos
             return 'El producto fue actualizado correctamente'
         }
     }
 
 
-    deleteProduct(id){
+    async deleteProduct(id){
         const i = this.products.findIndex(p=> p.id === id)
         if(i !== -1){
             this.products = this.products.filter(p=>p.id !== id)
-            this.#guardarDatos()
+            await this.#guardarDatos()
             return (`Producto eliminado correctamente!`)
         }
         return (`No existe el producto ${id}`)
     }
 }
-
-module.exports = ProductManager

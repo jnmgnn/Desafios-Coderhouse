@@ -1,0 +1,37 @@
+[
+    {
+      "id": 1,
+      "nombre": "Notebook",
+      "categoria": "Electrónica",
+      "precio": 999.99,
+      "descripcion": "Una notebook potente para todas tus necesidades informáticas."
+    },
+    {
+      "id": 2,
+      "nombre": "Auriculares",
+      "categoria": "Electrónica",
+      "precio": 149.99,
+      "descripcion": "Auriculares de alta calidad para una experiencia de audio inmersiva."
+    },
+    {
+      "id": 3,
+      "nombre": "Mochila",
+      "categoria": "Moda",
+      "precio": 49.99,
+      "descripcion": "Una mochila elegante y resistente para uso diario."
+    },
+    {
+      "id": 4,
+      "nombre": "Zapatillas",
+      "categoria": "Deportes",
+      "precio": 79.99,
+      "descripcion": "Zapatillas cómodas y de apoyo para tus carreras diarias."
+    },
+    {
+      "id": 5,
+      "nombre": "Cafetera",
+      "categoria": "Cocina",
+      "precio": 39.99,
+      "descripcion": "Prepara tu café favorito en casa con facilidad."
+    }
+  ]
